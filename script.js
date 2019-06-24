@@ -1,4 +1,4 @@
-
+document.getElementById('xmlFile').addEventListener('change', readSingleFile, false);
 
 function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
@@ -29,20 +29,19 @@ function readSingleFile(evt) {
           }
         }
         //console.log(questionElements)
-        let csvString = "Question\tAnswer"
+        let csvString = "Question,Answer"
         for(let i = 0; i < questionElements.length; i++){
           let ques = questionElements[i].getElementsByTagName("questionText")[0].textContent.trim().replace(/(\r\n|\n|\r)/gm, "")
           let ans = questionElements[i].getElementsByTagName("data")[0].textContent.trim().replace(/(\r\n|\n|\r)/gm, "");
-          csvString += `\n${ques}\t${ans == "" ? "No Answer Given" : ans}`
-          console.log(`Question: ${ques}`)
-          console.log(`Answer: ${ans == "" ? "No Answer Given" : ans}`)
+          csvString += `\n${ques.replace(/,/g, ' ')},${ans == "" ? "No Answer Given" : ans.replace(/,/g, ' ')}`
+          
           //console.count("Counting...")
         }
-        let csvContent = "data:text/tsv;charset=utf-8," + csvString
+        let csvContent = "data:text/csv;charset=utf-8," + csvString
         var encodedUri = encodeURI(csvContent);
 var link = document.createElement("a");
 link.setAttribute("href", encodedUri);
-link.setAttribute("download", "my_data.tsv");
+link.setAttribute("download", "parsed.csv");
 document.body.appendChild(link); // Required for FF
 
 link.click();
@@ -53,5 +52,3 @@ link.click();
       alert("Failed to load file");
     }
   }
-           
-document.getElementById('file').addEventListener('change', readSingleFile, false);

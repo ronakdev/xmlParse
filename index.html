@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>A Pen by  Ronak Shah</title>
-  
+  <title>XML to CSV</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
   
   
   
@@ -12,15 +12,30 @@
 </head>
 
 <body>
-
-    Select a file: <input type="file" name="myFile" id="file"><br><br>
-
-
-Parsed Data:
-
-<div id="data"></div>
+<form>
+  
+  <h1><strong>XML</strong> to CSV (Excel Compatible Format)</h1>
+  <div class="form-group">
+    
+  <div class="form-group file-area">
+        <label for="images">XML File <span>Your CSV Will Download Immediately After Uploading.</span></label>
+    <input type="file" name="xmlFiles" id="xmlFile" required="required" />
+    <div class="file-dummy">
+      <div class="success">The Parsed CSV File Has Been Downloaded</div>
+      <div class="default">Select or drag your XML File Here</div>
+    </div>
+  </div>
   
   
+</form>
+
+
+
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700' rel='stylesheet' type='text/css'>
+
 
     <script  src="./script.js"></script>
 
