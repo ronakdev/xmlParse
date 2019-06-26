@@ -38,11 +38,8 @@ function readSingleFile(evt) {
                   }
                   if(allElements[j].getAttribute("key")=="GENERAL_81"){
                     manString +="\nReport Submitter,"+allElements[j].getElementsByTagName("data")[0].textContent.trim().replace(/(\r\n|\n|\r)/gm, "")
-                  }
-                  
+                  } 
                 }
-                
-
             }
             let laserString = ""
             let fileString = ""
