@@ -9,6 +9,7 @@ function readSingleFile(evt) {
             let contents = e.target.result;
             let parser = new DOMParser();
             let dom = parser.parseFromString(contents, "text/xml");
+            console.log(dom);
             let result = {};
 
             // Storing all of the contents in elements in an array called allElements
@@ -73,18 +74,33 @@ function readSingleFile(evt) {
              }
 
             // This will convert the string into a csv file
-            let csvContent = "data:text/csv;charset=utf-8," + csvString+ manString + laserString + fileString
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "parsed.csv");
-            document.body.appendChild(link); // Required for FF
+            downloadCSV(csvString + manString + laserString + fileString)
+            // // let csvContent = "data:text/csv;charset=utf-8," + csvString+ manString + laserString + fileString
+            // var encodedUri = encodeURI(csvContent);
+            // var link = document.createElement("a");
+            // link.setAttribute("href", encodedUri);
+            // link.setAttribute("download", "parsed.csv");
+            // document.body.appendChild(link); // Required for FF
 
-            link.click();
+            // link.click();
 
         }
         r.readAsText(f);
     } else {
         alert("Failed to load file");
     }
+}
+
+function downloadCSV(csvString) {
+  let csvContent = `${csvString}`
+  let csvData = new Blob([csvContent], { type: 'text/csv' })
+  let csvUrl = URL.createObjectURL(csvData)
+  
+  let a = document.createElement('a')
+  a.href = csvUrl
+  a.target = "_blank"
+  a.download = 'export.csv'
+
+  document.body.appendChild(a)
+  a.click();
 }
