@@ -73,17 +73,7 @@ function readSingleFile(evt) {
                 csvString += `\n${num+". "}${ques.replace(/,/g, ' ')},${ans == "" ? "No Answer Given" : ans.replace(/,/g, ' ')}`
              }
 
-            // This will convert the string into a csv file
             downloadCSV(csvString + manString + laserString + fileString)
-            // // let csvContent = "data:text/csv;charset=utf-8," + csvString+ manString + laserString + fileString
-            // var encodedUri = encodeURI(csvContent);
-            // var link = document.createElement("a");
-            // link.setAttribute("href", encodedUri);
-            // link.setAttribute("download", "parsed.csv");
-            // document.body.appendChild(link); // Required for FF
-
-            // link.click();
-
         }
         r.readAsText(f);
     } else {
